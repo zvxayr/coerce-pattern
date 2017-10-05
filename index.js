@@ -8,8 +8,8 @@ function Coerce() {
 		return Promise.resolve(promisedValue).then(value => {
 			// check special cases first before casting plain objects
 			for (let instance of cases) {
-				if (instance.condition(value, pattern)) {
-					return instance.creator(value, pattern);
+				if (instance.condition(pattern, value)) {
+					return instance.creator(pattern, value);
 				}
 			}
 
