@@ -4,7 +4,7 @@ Coerces values into a pattern
 ## Installation
 
 ```sh
-    npm install coerce-pattern --save
+npm install coerce-pattern --save
 ```
 
 ## API
