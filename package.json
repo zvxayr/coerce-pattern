@@ -1,0 +1,24 @@
+{
+  "name": "coerce-pattern",
+  "version": "1.0.0",
+  "description": "Coerces values into a pattern",
+  "main": "index.js",
+  "scripts": {
+    "test": "node test.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zvxayr/coerce-pattern.git"
+  },
+  "keywords": [
+    "cast",
+    "coerce",
+    "pattern"
+  ],
+  "author": "zvxayr",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/zvxayr/coerce-pattern/issues"
+  },
+  "homepage": "https://github.com/zvxayr/coerce-pattern#readme"
+}
