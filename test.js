@@ -30,8 +30,8 @@ test1.cast(patrn1, value1, (err, res) => {
 let test2 = new Coerce()
 
 test2.addRule(
-    (value, pattern) => value === 100 && pattern == String, // return true if rule applies
-    (value, pattern) => '200' // return value of this rule
+    (pattern, value) => value === 100 && pattern == String, // return true if rule applies
+    (pattern, value) => '200' // return value of this rule
 );
 
 test2.cast(String, 100).then(res => {
