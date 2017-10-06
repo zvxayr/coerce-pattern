@@ -1,6 +1,6 @@
 {
   "name": "coerce-pattern",
-  "version": "1.0.0",
+  "version": "1.0.2",
   "description": "Coerces values into a pattern",
   "main": "index.js",
   "scripts": {

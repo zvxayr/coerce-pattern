@@ -42,24 +42,32 @@ function Coerce() {
 				// just return the value given
 				return value;
 			} else if (pattern.constructor == Object) {
-				let keys = [], promises = [];
-				for (let key in pattern) {
-					// recursively cast object values
-					// keep undefined for casting
-					keys.push(key);
-					promises.push(cast(pattern[key], value[key]));
-				}
-
-				return Promise.all(promises).then(values => {
-					let result = {};
-					for (let index in keys) {
-						// ignore undefined on output
-						if (values[index] != undefined) {
-							result[keys[index]] = values[index];
-						}
+				if (value == undefined) {
+					return;
+				} else if (value.constructor == Object) {
+					let keys = [], promises = [];
+					for (let key in pattern) {
+						// recursively cast object values
+						// keep undefined for casting
+						keys.push(key);
+						promises.push(cast(pattern[key], value[key]));
 					}
-					return result;
-				});
+
+					return Promise.all(promises).then(values => {
+						let result = {};
+						for (let index in keys) {
+							// ignore undefined on output
+							if (values[index] != undefined) {
+								result[keys[index]] = values[index];
+							}
+						}
+						return result;
+					});
+				} else {
+					// type error
+					// fail silently
+					return;
+				}
 			}
 		});
 	}
@@ -78,7 +86,7 @@ function Coerce() {
 
 	// Adds a user defined case
 	this.addRule = function(condition, creator) {
-		cases.push({ condition, creator });
+		cases.unshift({ condition, creator });
 	}
 
 	// Set a getter for cases

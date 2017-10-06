@@ -2,19 +2,20 @@ const Coerce = require('./');
 
 let test1 = new Coerce();
 
-let value1 = { id: '100', name: 'foo', list: [1, 2, 3, 4] };
-let patrn1 = { id: Number, name: String, list: [String] };
+let value1 = { id: '100', name: 'foo', list: [1, 2, 3, 4], falsy: 0 };
+let patrn1 = { id: Number, name: String, list: [String], falsy: {} };
 let asert1 = res => {
 	assert(res.id, 100);
 	assert(res.name, 'foo');
-	// assert(res.list[0], '1');
-	// assert(res.list[1], '2');
-	// assert(res.list[2], '3');
-	// assert(res.list[3], '4');
+	assert(res.list[0], '1');
+	assert(res.list[1], '2');
+	assert(res.list[2], '3');
+	assert(res.list[3], '4');
+	assert(res.falsy, undefined);
 }
 
 let onerr = err => {
-	console.error(err)
+	console.error(err);
 	process.exit(1);
 }
 
@@ -40,5 +41,5 @@ test2.cast(String, 100).then(res => {
 
 function assert(left, right) {
 	if (left !== right)
-		throw new Error(`Value mismatch! ${left} != ${right}`);
+		throw new Error(`Value mismatch! ${left} is not equal to ${right}`);
 }
