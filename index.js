@@ -12,8 +12,12 @@ function Coerce() {
 					return instance.creator(pattern, value);
 				}
 			}
-
-			if (datatypes.includes(pattern)) {
+			
+			if (pattern == undefined) {
+				// no pattern specified
+				// just return the value given
+				return value;
+			} else if (datatypes.includes(pattern)) {
 				if (value instanceof pattern) {
 					// No need to perform casting
 					return value;
@@ -35,12 +39,6 @@ function Coerce() {
 						return cast(pattern[0], value).then(value => [value]);
 					}
 				}
-			}
-
-			if (pattern == undefined) {
-				// no pattern specified
-				// just return the value given
-				return value;
 			} else if (pattern.constructor == Object) {
 				if (value == undefined) {
 					return;
@@ -68,6 +66,9 @@ function Coerce() {
 					// fail silently
 					return;
 				}
+			} else {
+				// what is this?
+				return value;
 			}
 		});
 	}
