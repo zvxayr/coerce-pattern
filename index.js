@@ -18,7 +18,9 @@ function Coerce() {
 				// just return the value given
 				return value;
 			} else if (datatypes.includes(pattern)) {
-				if (value instanceof pattern) {
+				if (value == undefined) {
+					return;
+				} else if (value instanceof pattern) {
 					// No need to perform casting
 					return value;
 				} else if (pattern == Date) {
